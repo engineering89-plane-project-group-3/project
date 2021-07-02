@@ -1,0 +1,14 @@
+<html> <!-- Every page uses this for the menu header -->
+    <head>
+      {% if title %}
+      <title>{{ title }} - Bri'ish Airlines</title>
+      {% else %}
+      <title>Welcome to Bri'ish Airlines!</title>
+      {% endif %}
+    </head>
+    <body>
+        <div>Menu: <a href="/index">Home</a></div>
+        <hr>
+        {% block content %}{% endblock %}
+    </body>
+</html>
