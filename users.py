@@ -18,3 +18,9 @@ def database_initialise():
 def encrypt(password):
     password = sha256_crypt.hash(password)
     return password
+
+def compare(username, password):
+    users_db_cursor.execute("SELECT password FROM users WHERE username = ?", (username,))
+    password_hash = ' '.join(users_db_cursor.fetchone()) # Removes the hash from a tuple as sql exports info as a tuple
+    password = sha256_crypt.verify(password, password_hash)
+    return password
