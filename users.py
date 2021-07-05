@@ -15,22 +15,6 @@ def database_initialise():
     )""")
     return "Completed"
 
-def add_user(staff_id, username, password, role):
+def encrypt(password):
     password = sha256_crypt.hash(password)
-    print(password)
-    users_db_cursor.execute("INSERT INTO users VALUES (?,?,?,?)", (staff_id, username, password, role))
-    users_db.commit()
-    return "User added"
-
-def all_users():
-    users_db_cursor.execute("SELECT * FROM users")
-    return users_db_cursor.fetchall()
-
-database_initialise()
-add_user(
-    int(input("Enter staff id: ")),
-    str(input("Enter username: ")),
-    str(input("Enter password: ")),
-    str(input(("Enter role: ")))
-)
-print(all_users())
+    return password
