@@ -1,3 +1,4 @@
+from passlib.hash import sha256_crypt
 import sqlite3
 
 # Connect to the database
@@ -15,6 +16,8 @@ def database_initialise():
     return "Completed"
 
 def add_user(staff_id, username, password, role):
+    password = sha256_crypt.hash(password)
+    print(password)
     users_db_cursor.execute("INSERT INTO users VALUES (?,?,?,?)", (staff_id, username, password, role))
     users_db.commit()
     return "User added"
