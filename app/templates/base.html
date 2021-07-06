@@ -1,0 +1,24 @@
+<html> <!-- Every page uses this for the menu header -->
+    <head>
+        {% if title %}
+        <title>{{ title }} - Bri'ish Airlines</title>
+        {% else %}
+        <title>Welcome to Bri'ish Airlines!</title>
+        {% endif %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
+    </head>
+    <body>
+        <div>Menu:
+            <a href="/">Home</a>
+            <a href="/report">Report</a>
+            {% if not session['username'] %}
+            <a href="/login">Login</a>
+            {% endif %}
+            {% if session['username'] %}
+                <a href="/logout">Logout</a>
+            {% endif %}
+        </div>
+        <hr>
+        {% block content %}{% endblock %}
+    </body>
+</html>
