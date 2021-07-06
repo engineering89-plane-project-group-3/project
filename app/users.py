@@ -24,3 +24,4 @@ def compare(username, password):
     password_hash = ' '.join(users_db_cursor.fetchone()) # Removes the hash from a tuple as sql exports info as a tuple
     password = sha256_crypt.verify(password, password_hash)
     return password
+

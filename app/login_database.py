@@ -24,11 +24,11 @@ class LoginDatabase:
 
     def compare(self, username, password):
         try:
-            # self.users_db_cursor.execute("SELECT password FROM users WHERE username = ?", (username,))
-            # password_hash = ' '.join(self.users_db_cursor.fetchone()) # Removes the hash from a tuple as sql exports info as a tuple
-            # password = sha256_crypt.verify(password, password_hash)
-            self.users_db_cursor.execute("SELECT password FROM users where username = (?)", [username])
-            real_password = self.users_db_cursor.fetchone()
+            self.users_db_cursor.execute("SELECT password FROM users WHERE username = ?", (username,))
+            password_hash = ' '.join(self.users_db_cursor.fetchone()) # Removes the hash from a tuple as sql exports info as a tuple
+            real_password = sha256_crypt.verify(password, password_hash)
+            # self.users_db_cursor.execute("SELECT password FROM users where username = (?)", [username])
+            # real_password = self.users_db_cursor.fetchone()
             if password == real_password[0]:
                 return True
             return False
