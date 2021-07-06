@@ -1,0 +1,23 @@
+{% extends "base.html" %} <!-- header -->
+
+{% block content %}
+    <h1>Sign In</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.username.label }}<br>
+            {{ form.username(size=32) }}
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}
+        </p>
+        <p>{{ form.remember() }} {{ form.remember.label }}</p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    <body>
+      {% for msg in get_flashed_messages() %}
+      <h1 style="color: #FF0000">{{ msg }}</h1>
+      {% endfor %}
+    </body>
+{% endblock %}

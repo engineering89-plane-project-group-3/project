@@ -7,7 +7,15 @@
       {% endif %}
     </head>
     <body>
-        <div>Menu: <a href="/index">Home</a></div>
+        <div>Menu:
+            <a href="/">Home</a>
+            {% if not session['username'] %}
+            <a href="/login">Login</a>
+            {% endif %}
+            {% if session['username'] %}
+                <a href="/logout">Logout</a>
+            {% endif %}
+        </div>
         <hr>
         {% block content %}{% endblock %}
     </body>
