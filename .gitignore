@@ -3,3 +3,4 @@ venv/
 .pytest_cache/
 .DS_store
 secrets.py
+__pycache__/
