@@ -12,7 +12,7 @@ class Helicopter(Aircraft):
 
 
 class Aeroplane(Aircraft):
-    def __init(self, model):
+    def __init__(self, model):
         super().__init__()
         self.model = model
 
