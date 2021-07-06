@@ -1,4 +1,3 @@
-import datetime
 import sqlite3
 from person import Person
 from datetime import date
@@ -6,7 +5,7 @@ from datetime import date
 conn = sqlite3.connect('databases/passengers.db')
 c = conn.cursor()
 
-class Passengers(Person):
+class Passenger(Person):
 
 
     def create_passenger_list(flight_id):
@@ -29,7 +28,7 @@ class Passengers(Person):
                 'dob': dob
             })
 
-    def view_passengers_list(flight_id):
+    def view_passenger_list(flight_id):
         query = f"SELECT * FROM {flight_id}"
         with conn:
             c.execute(query)
