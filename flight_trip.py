@@ -1,6 +1,3 @@
-import sqlite3
-
-
 class FlightTrip:
 
     passenger_list = []
