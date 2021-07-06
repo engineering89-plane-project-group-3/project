@@ -31,5 +31,6 @@ class FlightTrip:
     def view_flight_trip(self):
         pass
 
-    def assign_staff(self):
+    def calculate_price(self, age, destination):
         pass
+

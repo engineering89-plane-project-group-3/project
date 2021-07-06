@@ -17,10 +17,6 @@ Given a set of user stories we must complete a program satisfying all the necess
 We have decided to approach this project using Scrum methodology. 
 The Scrum board can be found [Here](https://github.com/engineering89-plane-project-group-3/project/projects/1)
 
-## Entity Relationship Diagram
-An entity-relationship diagram (ERD) helped us illustrate the logical structure of our databases by defining their
-attributes and showing their relationships. 
-
 ## Class Diagram 
 A class diagram was created to further demonstrate and  map out the structure of the system by modelling its classes, 
 attributes, methods and the relationship between objects. 
