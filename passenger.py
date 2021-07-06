@@ -1,12 +1,14 @@
+import datetime
 import sqlite3
+from flight_trip import FlightTrip
 from person import Person
 from datetime import date
 
 conn = sqlite3.connect('databases/passengers.db')
 c = conn.cursor()
 
-class Passenger(Person):
 
+class Passenger(Person):
 
     def create_passenger_list(flight_id):
         query = f"""
@@ -35,15 +37,14 @@ class Passenger(Person):
             return c.fetchall()
 
     def remove_passenger(flight_id, passport_id):
-        query = f"DELETE FROM {flight_id} WHERE passenger_id = :passenger_id"
+        query = f"DELETE FROM {flight_id} WHERE passport_id = :passport_id"
         with conn:
             return c.execute(query, {'passport_id': passport_id})
 
-    def calculate_age(dob):
-        today = date.today()
-        return today.year - dob.year - ((today.month, today.day) < (dob.month, dob.day))
-
-
-
-
-
+    def view_passenger_flight_trip(flight_id):
+        query = """
+        SELECT * from flight_trip
+        WHERE :flight_id = flight_trip.flight_id"""
+        with conn:
+            c.execute(query, {'flight_id': flight_id})
+            return c.fetchone()
