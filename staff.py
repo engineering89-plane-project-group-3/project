@@ -1,7 +1,7 @@
 import sqlite3
 from person import Person
 
-conn = sqlite3.connect(':memory:')
+conn = sqlite3.connect('databases/users.db')
 c = conn.cursor()
 
 
