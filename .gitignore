@@ -1,5 +1,5 @@
 .idea/
-venv/
 .pytest_cache/
 .DS_store
 secrets.py
+app/__pycache__
