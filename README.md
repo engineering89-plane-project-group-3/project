@@ -25,4 +25,6 @@ attributes and showing their relationships.
 A class diagram was created to further demonstrate and  map out the structure of the system by modelling its classes, 
 attributes, methods and the relationship between objects. 
 
+## Gitflow Diagram
+
 ## Test Driven Development 

@@ -51,3 +51,4 @@ class Staff(Person):
         query = "DELETE FROM staff WHERE staff_id = :staff_id"
         with conn:
             c.execute(query, {'staff_id': self.staff_id})
+
