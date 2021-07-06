@@ -1,7 +1,9 @@
 from flask import render_template, flash, redirect, url_for, session
 from app import flask_app
 from app.login_form import LoginForm
-from app.database import Database
+from app.login_database import LoginDatabase
+from app.passenger_database import PassengerDatabase
+from app.report_form import ReportForm
 
 
 @flask_app.route('/index')
@@ -20,8 +22,8 @@ def login():
 
     form = LoginForm()
     if form.validate_on_submit():
-        db = Database()
-        db.users_db_cursor.execute("SELECT * FROM users where username = (?)", [form.username.data])
+        db = LoginDatabase()
+        db.users_db_cursor.execute("SELECT * FROM users WHERE username = (?)", [form.username.data])
         try:
             user = list(db.users_db_cursor.fetchone())
         except:
@@ -40,3 +42,13 @@ def login():
 def logout():
     session.pop('username', None)
     return redirect(url_for('index'))
+
+@flask_app.route('/report', methods=['GET', 'POST'])
+def report():
+    form = ReportForm()
+    if form.validate_on_submit():
+        db = PassengerDatabase()
+        db.c.execute("SELECT first_name, last_name, passport_id FROM " + form.flight_id.data)
+        data = db.c.fetchall()
+        return render_template('report.html', title='Report', form=form, data=data)
+    return render_template('report.html', title='Report', form=form)

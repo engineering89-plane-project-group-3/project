@@ -7,8 +7,7 @@ def encrypt(password):
     return password
 
 
-class Database:
-
+class LoginDatabase:
 
     # Connect to the database
     users_db = sqlite3.connect('app/databases/users.db', check_same_thread=False)

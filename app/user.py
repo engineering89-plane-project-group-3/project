@@ -1,6 +1,4 @@
-from app.database import Database
 from flask_login import UserMixin
-from app import login
 
 
 class User(UserMixin):
@@ -27,15 +25,3 @@ class User(UserMixin):
 
     def get_id(self):
         return self.staff_id
-
-
-@login.user_loader
-def load_user(user_id):
-    sqldb = Database()
-    sqldb.users_db_cursor.execute("SELECT * from users where staff_id = (?)", [user_id])
-    lu = sqldb.users_db_cursor.fetchone()
-    if lu is None:
-        return None
-    else:
-        print(int(lu[0]), lu[1], lu[2], lu[3])
-        return User(int(lu[0]), lu[1], lu[2], lu[3])
