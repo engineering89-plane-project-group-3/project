@@ -38,5 +38,3 @@ def available_flights():
 def view_flight_trip(flight_id):
     flight_trip_db_cursor.execute("SELECT * FROM flight_trip WHERE flight_id = (?)", (flight_id,))
     return flight_trip_db_cursor.fetchall()
-
-create_flight_trip("BA_003", "3", "200", "Athens", "14:00", "17:45", "B")
