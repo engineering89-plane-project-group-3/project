@@ -1,0 +1,12 @@
+{% extends "base.html" %} <!-- header -->
+
+{% block content %}
+    {% if session['username'] %}
+        Hi {{ session['username'] }}!
+    {% endif %}
+    <body>
+      {% for msg in get_flashed_messages() %}
+      <h1 style="color: #FF0000">{{ msg }}</h1>
+      {% endfor %}
+    </body>
+{% endblock %}
