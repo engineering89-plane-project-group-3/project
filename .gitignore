@@ -3,3 +3,4 @@
 .DS_store
 secrets.py
 app/__pycache__
+venv/
