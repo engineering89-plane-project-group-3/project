@@ -16,5 +16,5 @@ class Passengers(Person):
     def view_booking(self):
         pass
 
-    def cancel
-
+    def cancel(self):
+        pass
