@@ -2,10 +2,10 @@ import sqlite3
 
 
 class FlightTrip:
-    flight_trip_db = sqlite3.connect('databases/flight_trip.db', check_same_thread=False)
+    flight_trip_db = sqlite3.connect('app/databases/flight_trip.db', check_same_thread=False)
     flight_trip_db_cursor = flight_trip_db.cursor()
 
-    destinations_db = sqlite3.connect('databases/destinations.db', check_same_thread=False)
+    destinations_db = sqlite3.connect('app/databases/destinations.db', check_same_thread=False)
     destinations_db_cursor = destinations_db.cursor()
 
     def database_initialise(self):
@@ -39,3 +39,6 @@ class FlightTrip:
     def view_flight_trip(self, flight_id):
         self.flight_trip_db_cursor.execute("SELECT * FROM flight_trip WHERE flight_id = (?)", (flight_id,))
         return self.flight_trip_db_cursor.fetchall()
+
+d = FlightTrip()
+d.database_initialise()

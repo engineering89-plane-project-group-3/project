@@ -2,23 +2,16 @@ import sqlite3
 
 
 class AircraftDatabase:
-    aircraftdb = sqlite3.connect('databases/aircraft.db', check_same_thread=False)
+
+    aircraftdb = sqlite3.connect('app/databases/aircraft.db', check_same_thread=False)
     db_curs = aircraftdb.cursor()
 
     # db_curs.execute("""CREATE TABLE IF NOT EXISTS aircraft (
     #         aircraft_id integer,
-    #         aircraft_capacity integer,
-    #         aircraft_type text
+    #         capacity integer,
+    #         type text
     #     )""")
     # aircraftdb.commit()
-
-    def __init__(self, aircraft_type, aircraft_id, aircraft_capacity, new_flight_id, search_aircraft_id):
-
-        self.aircraft_type = aircraft_type
-        self.aircraft_id = aircraft_id
-        self.aircraft_capacity = aircraft_capacity
-        self.new_flight_id = new_flight_id
-        self.search_aircraft_id = search_aircraft_id
 
     def view_all_aircraft(self):
         print('------------------------------------------------------')

@@ -3,7 +3,7 @@ import sqlite3
 
 class DestinationsDatabase:
 
-    destinations_db = sqlite3.connect('databases/destinations.db', check_same_thread=False)
+    destinations_db = sqlite3.connect('app/databases/destinations.db', check_same_thread=False)
     destinations_db_cursor = destinations_db.cursor()
 
 

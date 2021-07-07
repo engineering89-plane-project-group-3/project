@@ -1,9 +1,9 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField
 from wtforms.validators import DataRequired
-from destinations import DestinationsDatabase
-from aircraft import AircraftDatabase
-from flight_trip import FlightTrip
+from app.destinations import DestinationsDatabase
+from app.aircraft import AircraftDatabase
+from app.flight_trip import FlightTrip
 
 class CreateFlightForm(FlaskForm):
 

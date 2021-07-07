@@ -7,9 +7,9 @@ from app.login_database import LoginDatabase
 from app.passenger_database import PassengerDatabase
 from app.report_form import ReportForm
 from app.create_flight_form import CreateFlightForm, ModifyFlightForm
-from destinations import DestinationsDatabase
-from aircraft import AircraftDatabase
-from flight_trip import FlightTrip
+from app.destinations import DestinationsDatabase
+from app.aircraft import AircraftDatabase
+from app.flight_trip import FlightTrip
 
 
 @flask_app.route('/index')
