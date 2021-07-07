@@ -1,10 +1,192 @@
-*{margin: 0;}
+* {
+    margin: 0;
+}
 
 body {
-  background-color: lightblue;
+    font-family: Arial;
+    background-color: #bdc3c7;
+      background-image: url("https://cdn.discordapp.com/attachments/855419630424555530/862329419938529311/Time_Lapse_Video_Of_Clouds_And_Sun.mp4");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
 }
 
 h1 {
-  color: navy;
-  margin-left: 20px;
+    text-align: center;
+    margin-bottom: 20px;
 }
+
+nav {
+    -webkit-backdrop-filter: blur(50px);
+    backdrop-filter: blur(50px);
+    background-color: rgba(230, 230, 230, .25);
+    position: fixed;
+    width: 100%;
+    height: 80px;
+    overflow: hidden;
+    z-index: 10;
+	box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+#menu {
+position:absolute;
+  margin: 0 auto;
+  max-width: 1000px;
+  width: 100%;
+}
+nav li {
+  display: inline-flex;
+  align-items: flex-start;
+}
+
+nav li a {
+  font-size: 18px;
+  padding: 0 20px;
+  height: 75px;
+  line-height: 80px;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: center;
+  color: #ecf0f1;
+  border-bottom: 5px solid rgba(0,0,0,0);
+}
+nav li:first-child {
+    float: left;
+    font-family: 'Kanit', sans-serif;
+}
+nav li:first-child a {
+    background: #CCCFCB;
+    margin-right: 20px;
+    background: -webkit-linear-gradient(180deg, rgba(134,134,134,1) 0%, rgba(255,255,255,1) 35%, rgba(75,76,77,1) 100%);
+    background: -moz-linear-gradient(180deg, rgba(134,134,134,1) 0%, rgba(255,255,255,1) 35%, rgba(75,76,77,1) 100%);
+    background: linear-gradient(180deg, rgba(134,134,134,1) 0%, rgba(255,255,255,1) 35%, rgba(75,76,77,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 40px;
+    -webkit-text-stroke: 1px #565556;
+}
+nav li:not(:first-child) a:hover {
+    border-bottom: 5px solid #fff;
+    /*
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: rgba(200, 200, 200, 0.5);
+    */
+}
+
+nav li a span {
+  margin-right: 4px;
+  margin-top: -2px;
+  vertical-align: middle;
+}
+.content {
+    -webkit-backdrop-filter: blur(50px);
+    backdrop-filter: blur(50px);
+    background-color: rgba(255, 255, 255, 0.75);
+    margin: 0 auto;
+    margin-top: 20px;
+    max-width: 1000px;
+    width: calc(100% - 40px);
+    padding: 30px 40px;
+    margin-bottom: 50px;
+    border-radius: 10px;
+    border:none;
+}
+#index_overdrive {
+    -webkit-backdrop-filter: blur(0px);
+    backdrop-filter: blur(0px);
+    background-color: rgba(255, 255, 255, 0);
+    margin: 0 auto;
+    margin-top: 20px;
+    max-width: 1000px;
+    width: calc(100% - 40px);
+    padding: 30px 40px;
+    margin-bottom: 50px;
+    border-radius: 10px;
+    border:none;
+}
+
+
+#login {
+    margin: 0 auto;
+    margin-top: 40px;
+    max-width: 500px;
+    width: calc(100% - 90px);
+    padding: 30px 35px;
+}
+#login input[type=text], input[type=password]{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+#sitetitle {
+    background: #CCCFCB;
+    margin-right: 20px;
+    background: -webkit-linear-gradient(180deg, rgba(134,134,134,1) 0%, rgba(255,255,255,1) 35%, rgba(75,76,77,1) 100%);
+    background: -moz-linear-gradient(180deg, rgba(134,134,134,1) 0%, rgba(255,255,255,1) 35%, rgba(75,76,77,1) 100%);
+    background: linear-gradient(180deg, rgba(134,134,134,1) 0%, rgba(255,255,255,1) 35%, rgba(75,76,77,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: 100px;
+    height: 70px;
+    background: red;
+    font-size: 30px;
+    position:absolute;
+}
+
+.button {
+  width: 50%;
+  margin: 0 25%;
+  border-radius: 100px;
+  margin-top: 20px;
+  background-color: #f39c12;
+  border: none;
+  color: white;
+  padding: 15px 23px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  cursor: pointer;
+}
+.button:hover {
+  background-color: #f1c40f;
+}
+
+#nav-div {
+    width: 100%;
+    height:80px;
+}
+
+h2 {
+    background: #CCCFCB;
+    background: -webkit-linear-gradient(180deg, rgba(134,134,134,1) 0%, rgba(255,255,255,1) 35%, rgba(75,76,77,1) 100%);
+    background: -moz-linear-gradient(180deg, rgba(134,134,134,1) 0%, rgba(255,255,255,1) 35%, rgba(75,76,77,1) 100%);
+    background: linear-gradient(180deg, rgba(134,134,134,1) 0%, rgba(255,255,255,1) 35%, rgba(75,76,77,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 50px;
+    -webkit-text-stroke: 1px #565556;
+    font-family: 'Kanit', sans-serif;
+    text-align: center;
+}
+h3 {
+    text-align: center;
+}
+
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+/* TODO: Fix Z level of header */
+/* TODO: Make it so content always goes to bottom of page */
+/* TODO: Make it so there's a few px gap between end of content and bottom of page */

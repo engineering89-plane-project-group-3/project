@@ -1,7 +1,7 @@
 import sqlite3
 from person import Person
 
-conn = sqlite3.connect('databases/staff.db')
+conn = sqlite3.connect('databases/staff.db', check_same_thread=False)
 c = conn.cursor()
 
 

@@ -1,6 +1,8 @@
 {% extends "base.html" %} <!-- header -->
 
 {% block content %}
+
+    <div id="login" class="content">
     <h1>Sign In</h1>
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
@@ -12,11 +14,12 @@
             {{ form.password.label }}<br>
             {{ form.password(size=32) }}
         </p>
-        <p>{{ form.submit() }}</p>
+        <p>{{ form.submit(class_="button") }}</p>
     </form>
     <body>
       {% for msg in get_flashed_messages() %}
       <h1 style="color: #FF0000">{{ msg }}</h1>
       {% endfor %}
     </body>
+    </div>
 {% endblock %}

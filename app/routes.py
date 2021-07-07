@@ -1,9 +1,15 @@
+import datetime
+from urllib import request
 from flask import render_template, flash, redirect, url_for, session
 from app import flask_app
 from app.login_form import LoginForm
 from app.login_database import LoginDatabase
 from app.passenger_database import PassengerDatabase
 from app.report_form import ReportForm
+from app.create_flight_form import CreateFlightForm, ModifyFlightForm
+from destinations import DestinationsDatabase
+from aircraft import AircraftDatabase
+from flight_trip import FlightTrip
 
 
 @flask_app.route('/index')
@@ -52,3 +58,36 @@ def report():
         data = db.c.fetchall()
         return render_template('report.html', title='Report', form=form, data=data)
     return render_template('report.html', title='Report', form=form)
+
+#Create Flight
+@flask_app.route('/createflight', methods=['GET', 'POST'])
+def flight_management():
+    form = CreateFlightForm()
+    if form.validate_on_submit():
+        dest_db = DestinationsDatabase()
+        airc_db = AircraftDatabase()
+        dest_db.destinations_db_cursor.execute('SELECT time FROM destinations WHERE destination = "{}"'.format(form.destination.data))
+        time = dest_db.destinations_db_cursor.fetchone()
+
+        arrival_time = datetime.strptime(time, "HH:mm") + datetime.strptime(form.departure_time.data, "HH:mm")
+
+        FlightTrip.create_flight_trip(int(form.aircraft_id.data), airc_db.get_capacity(form.aircraft_id.data), form.destination.data, datetime.strptime(form.departure_time.data, "HH:mm"), arrival_time)
+        flash("Flight has been created")
+    return render_template('createflight.html', title='Flight Management', form=form)
+
+# Modify Flight
+@flask_app.route('/modifyflight', methods=['GET', 'POST'])
+def modify_flight():
+
+    form = ModifyFlightForm()
+    if form.validate_on_submit():
+        if form.submit.data:
+            db = FlightTrip()
+            db.flight_trip_db_cursor.execute('SELECT aircraft_id FROM flight_trip WHERE flight_id = "{}"'.format(form.flight_id.data))
+            flash("Current plane is: " + db.flight_trip_db_cursor.fetchone())
+        elif form.submit2.data:
+            db = FlightTrip()
+            db.flight_trip_db_cursor.execute('UPDATE flight_trip SET aircraft_id = ? WHERE flight_id = ?', (form.aircraft_id.data, form.flight_id.data))
+            flash("Plane has been changed for the Flight")
+        return render_template('modifyflight.html', title='Flight Management', form=form)
+#Book Flight

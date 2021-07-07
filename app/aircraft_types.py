@@ -1,6 +1,4 @@
 from aircraft import Aircraft
-#from flight_trip import FlightTrip
-
 
 class Helicopter(Aircraft):
     def __init__(self, model):

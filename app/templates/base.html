@@ -6,19 +6,32 @@
         <title>Welcome to Bri'ish Airlines!</title>
         {% endif %}
         <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,900&display=swap" rel="stylesheet">
     </head>
     <body>
-        <div>Menu:
-            <a href="/">Home</a>
-            <a href="/report">Report</a>
-            {% if not session['username'] %}
-            <a href="/login">Login</a>
-            {% endif %}
-            {% if session['username'] %}
-                <a href="/logout">Logout</a>
-            {% endif %}
+    <video autoplay muted loop id="myVideo">
+      <source src="https://cdn.discordapp.com/attachments/855419630424555530/862329419938529311/Time_Lapse_Video_Of_Clouds_And_Sun.mp4" type="video/mp4">
+      Your browser does not support HTML5 video.
+    </video>
+        <nav>
+        <div id="menu">
+            <ul>
+                <li><a href="/"><span id="title">Bri'ish Airways</span></a></li>
+                <li><a href="/report"><span class="material-icons">group</span>Report</a></li>
+                {% if not session['username'] %}
+                <li><a href="/login"><span class="material-icons">login</span>Login</a></li>
+                {% endif %}
+                {% if session['username'] %}
+                <li><span class="material-icons">logout</span><a href="/logout">Logout</a></li>
+                {% endif %}
+            </ul>
         </div>
-        <hr>
+        </nav>
+        <div id="nav-div"></div>
         {% block content %}{% endblock %}
+
     </body>
 </html>

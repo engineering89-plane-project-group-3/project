@@ -4,7 +4,7 @@ from flight_trip import FlightTrip
 from person import Person
 from datetime import date
 
-conn = sqlite3.connect('databases/passengers.db')
+conn = sqlite3.connect('databases/passengers.db', check_same_thread=False)
 c = conn.cursor()
 
 

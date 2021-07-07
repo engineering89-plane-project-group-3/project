@@ -1,6 +1,7 @@
 {% extends "base.html" %} <!-- header -->
 
 {% block content %}
+    <div class="content">
     <h1>Passengers Report</h1>
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
@@ -30,5 +31,6 @@
          {% endfor %}
         </tbody>
     </table>
+    </div>
 {% endblock %}
 

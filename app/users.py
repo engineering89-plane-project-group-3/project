@@ -2,7 +2,7 @@ from passlib.hash import sha256_crypt
 import sqlite3
 
 # Connect to the database
-users_db = sqlite3.connect('databases/users.db')
+users_db = sqlite3.connect('databases/users.db', check_same_thread=False)
 users_db_cursor = users_db.cursor()
 
 
