@@ -186,7 +186,3 @@ h3 {
   min-width: 100%;
   min-height: 100%;
 }
-
-/* TODO: Fix Z level of header */
-/* TODO: Make it so content always goes to bottom of page */
-/* TODO: Make it so there's a few px gap between end of content and bottom of page */

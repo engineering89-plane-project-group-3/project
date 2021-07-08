@@ -1,9 +1,9 @@
-from passlib.hash import sha256_crypt
+from passlib.hash import pbkdf2_sha256
 import sqlite3
 
 
 def encrypt(password):
-    password = sha256_crypt.hash(password)
+    password = pbkdf2_sha256.hash(password)
     return password
 
 
@@ -22,16 +22,20 @@ class LoginDatabase:
         )""")
         return "Completed"
 
+    def new_user(self, staff_id, username, password, role):
+        password_encrypted = pbkdf2_sha256.hash(password)
+        self.users_db_cursor.execute("INSERT INTO users VALUES (?, ?, ?, ?)", (staff_id, username, password_encrypted, role))
+        self.users_db.commit()
+        return True
+
     def compare(self, username, password):
         try:
-            # self.users_db_cursor.execute("SELECT password FROM users WHERE username = ?", (username,))
-            # password_hash = ' '.join(self.users_db_cursor.fetchone()) # Removes the hash from a tuple as sql exports info as a tuple
-            # password = sha256_crypt.verify(password, password_hash)
-            self.users_db_cursor.execute("SELECT password FROM users where username = (?)", [username])
-            real_password = self.users_db_cursor.fetchone()
-            if password == real_password[0]:
+            self.users_db_cursor.execute("SELECT password FROM users WHERE username = ?", (username,))
+            password_hash = ' '.join(self.users_db_cursor.fetchone()) # Removes the hash from a tuple as sql exports info as a tuple
+            password = pbkdf2_sha256.verify(password, password_hash)
+            if password:
                 return True
             return False
-        except Exception as e:
-            print(e)
+        except self.Exception as e:
+            self.print(e)
             return False

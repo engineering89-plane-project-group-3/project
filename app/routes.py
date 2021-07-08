@@ -1,7 +1,9 @@
 from datetime import datetime, timedelta
+
+import flask.app
 from flask import render_template, flash, redirect, url_for, session
 from app import flask_app
-from app.login_form import LoginForm
+from app.login_form import LoginForm, RegisterForm
 from app.login_database import LoginDatabase
 from app.passenger_database import PassengerDatabase
 from app.report_form import ReportForm
@@ -42,6 +44,15 @@ def login():
         flash('Logged in successfully')
         return redirect(url_for('index'))
     return render_template('login.html', title='Sign In', form=form)
+
+@flask_app.route('/register', methods=['GET', 'POST'])
+def register():
+    form = RegisterForm()
+    if form.validate_on_submit():
+        db = LoginDatabase()
+        db.new_user(int(form.staff_id.data), str(form.username.data), str(form.password.data), str(form.role.data))
+        flash("User registration complete!")
+    return render_template('register.html', title='Register a new user', form=form)
 
 @flask_app.route('/logout')
 def logout():
