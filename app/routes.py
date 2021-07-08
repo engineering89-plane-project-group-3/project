@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime, timedelta
 from urllib import request
 from flask import render_template, flash, redirect, url_for, session
 from app import flask_app
@@ -6,7 +6,7 @@ from app.login_form import LoginForm
 from app.login_database import LoginDatabase
 from app.passenger_database import PassengerDatabase
 from app.report_form import ReportForm
-from app.create_flight_form import CreateFlightForm, ModifyFlightForm, BookFlightForm
+from app.flight_form import CreateFlightForm, ModifyFlightForm, BookFlightForm
 from app.destinations import DestinationsDatabase
 from app.aircraft import AircraftDatabase
 from app.flight_trip import FlightTrip
@@ -68,12 +68,16 @@ def flight_management():
         airc_db = AircraftDatabase()
         dest_db.destinations_db_cursor.execute('SELECT time FROM destinations WHERE destination = "{}"'.format(form.destination.data))
         time = dest_db.destinations_db_cursor.fetchone()
+        vals = form.departure_time.data.split(':')
+        arrival_time = datetime.strptime(time[0], "%H:%M") + timedelta(hours=int(vals[0]), minutes=int(vals[1]))
+        arrival_time = "{:d}:{:02d}".format(arrival_time.hour, arrival_time.minute)
+        departure_time = datetime.strptime(form.departure_time.data, "%H:%M")
+        departure_time = "{:d}:{:02d}".format(departure_time.hour, departure_time.minute)
 
-        arrival_time = datetime.strptime(time, "HH:mm") + datetime.strptime(form.departure_time.data, "HH:mm")
-
-        FlightTrip.create_flight_trip(int(form.aircraft_id.data), airc_db.get_capacity(form.aircraft_id.data), form.destination.data, datetime.strptime(form.departure_time.data, "HH:mm"), arrival_time)
+        ft = FlightTrip()
+        ft.create_flight_trip(form.flight_id.data, form.aircraft_id.data, airc_db.get_capacity(form.aircraft_id.data), form.destination.data, departure_time, arrival_time)
         flash("Flight has been created")
-    return render_template('createflight.html', title='Flight Management', form=form)
+    return render_template('createflight.html', title='Create Flight', form=form)
 
 # Modify Flight
 @flask_app.route('/modifyflight', methods=['GET', 'POST'])
@@ -84,12 +88,13 @@ def modify_flight():
         if form.submit.data:
             db = FlightTrip()
             db.flight_trip_db_cursor.execute('SELECT aircraft_id FROM flight_trip WHERE flight_id = "{}"'.format(form.flight_id.data))
-            flash("Current plane is: " + db.flight_trip_db_cursor.fetchone())
+            return render_template('modifyflight.html', title='Flight Management', form=form, data=db.flight_trip_db_cursor.fetchone()[0])
         elif form.submit2.data:
             db = FlightTrip()
             db.flight_trip_db_cursor.execute('UPDATE flight_trip SET aircraft_id = ? WHERE flight_id = ?', (form.aircraft_id.data, form.flight_id.data))
             flash("Plane has been changed for the Flight")
-        return render_template('modifyflight.html', title='Flight Management', form=form)
+    return render_template('modifyflight.html', title='Modify Flight', form=form)
+#Book Flight
 
 #Book Flight
 @flask_app.route('/bookflight', methods=['GET', 'POST'])
@@ -98,5 +103,5 @@ def book_flight():
     if form.validate_on_submit():
         db = PassengerDatabase()
         db.add_passenger(str(form.flight_id.data), str(form.passport_id.data), str(form.first_name.data), str(form.last_name.data), str(form.dob.data))
-    flash("Passenger has been added to list")
+        flash("Passenger has been added to list")
     return render_template('bookflight.html', title='Passenger flight booking', form=form)

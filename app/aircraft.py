@@ -75,5 +75,6 @@ class AircraftDatabase:
         return 'The aircraft has been successfully changed'
 
     def get_capacity(self, ac_id):
-        self.db_curs.execute("SELECT capacity FROM aircraft WHERE aircraft_id = ?", ac_id)
-        return self.db_curs.fetchone()
+        print(ac_id)
+        self.db_curs.execute("SELECT capacity FROM aircraft WHERE aircraft_id = " + ac_id)
+        return int(self.db_curs.fetchone()[0])

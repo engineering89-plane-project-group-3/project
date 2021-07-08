@@ -20,13 +20,13 @@ class FlightTrip:
             price real
         )""")
 
-    def create_flight_trip(self, aircraft_id, capacity, destination, departure_time, arrival_time):
+    def create_flight_trip(self, flight_id, aircraft_id, capacity, destination, departure_time, arrival_time):
         self.destinations_db_cursor.execute("SELECT distance FROM destinations WHERE destination = (?)", (destination,))
         distance = self.destinations_db_cursor.fetchone()[0]
         price = 0.10 * distance
 
-        self.flight_trip_db_cursor.execute("INSERT INTO flight_trip VALUES (?, ?, ?, ?, ?, ?)",
-                                           (aircraft_id, capacity, destination, departure_time, arrival_time, price))
+        self.flight_trip_db_cursor.execute("INSERT INTO flight_trip VALUES (?, ?, ?, ?, ?, ?, ?)",
+                                           (flight_id, aircraft_id, capacity, destination, departure_time, arrival_time, price))
         self.flight_trip_db.commit()
 #def available_seats()
     def change_flight_trip(self):

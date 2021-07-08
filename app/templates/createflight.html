@@ -1,0 +1,42 @@
+{% extends "base.html" %} <!-- header -->
+
+{% block content %}
+    <div class="content">
+    <h1>Modify a Flight</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.flight_id.label }}<br>
+            {{ form.flight_id(size=32) }}
+        </p>
+        <br>
+        <p>
+            {{ form.aircraft_id.label }}<br>
+            {{ form.aircraft_id }}
+        </p>
+        <br>
+        <p>
+            {{ form.destination.label }}<br>
+            {{ form.destination }}
+        </p>
+        <br>
+        <p>
+            {{ form.departure_time.label }}<br>
+            {{ form.departure_time(size=32) }}
+        </p>
+        <br>
+        <p>
+            {{ form.price.label }}<br>
+            {{ form.price(size=32) }}
+        </p>
+        <br>
+        <p>{{ form.submit() }}</p>
+    </form>
+        {% for msg in get_flashed_messages() %}
+          <h2>{{ msg }}</h2>
+        {% endfor %}
+
+        <br>
+        <a href="/modifyflight">Modify Flight</a>
+    </div>
+{% endblock %}
