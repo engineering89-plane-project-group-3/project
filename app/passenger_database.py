@@ -7,15 +7,16 @@ class PassengerDatabase:
     conn = sqlite3.connect('app/databases/passengers.db', check_same_thread=False)
     c = conn.cursor()
 
-    def add_passenger(self, flight_id):
-        query = "INSERT into " + flight_id + " (:passport_id,:first_name,:last_name,:dob)"
-        with self.conn:
-            self.c.execute(query, {
-                'passport_id': self.passport_id,
-                'first_name': self.first_name,
-                'last_name': self.last_name,
-                'dob': self.dob
-            })
+    def add_passenger(self, flight_id, passport_id, first_name, last_name, dob):
+        self.c.execute("""CREATE TABLE IF NOT EXISTS flight_id (
+            flight_id text,
+            passport_id text,
+            first_name text,
+            last_name text,
+            dob text
+        )""")
+        self.c.execute("INSERT INTO flight_id VALUES (?, ?, ?, ?, ?)", (flight_id, passport_id, first_name, last_name, dob))
+        self.conn.commit()
 
     def book_flight_trip(self):
         pass

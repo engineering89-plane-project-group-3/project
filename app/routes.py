@@ -6,7 +6,7 @@ from app.login_form import LoginForm
 from app.login_database import LoginDatabase
 from app.passenger_database import PassengerDatabase
 from app.report_form import ReportForm
-from app.create_flight_form import CreateFlightForm, ModifyFlightForm
+from app.create_flight_form import CreateFlightForm, ModifyFlightForm, BookFlightForm
 from app.destinations import DestinationsDatabase
 from app.aircraft import AircraftDatabase
 from app.flight_trip import FlightTrip
@@ -90,4 +90,13 @@ def modify_flight():
             db.flight_trip_db_cursor.execute('UPDATE flight_trip SET aircraft_id = ? WHERE flight_id = ?', (form.aircraft_id.data, form.flight_id.data))
             flash("Plane has been changed for the Flight")
         return render_template('modifyflight.html', title='Flight Management', form=form)
+
 #Book Flight
+@flask_app.route('/bookflight', methods=['GET', 'POST'])
+def book_flight():
+    form = BookFlightForm()
+    if form.validate_on_submit():
+        db = PassengerDatabase()
+        db.add_passenger(str(form.flight_id.data), str(form.passport_id.data), str(form.first_name.data), str(form.last_name.data), str(form.dob.data))
+    flash("Passenger has been added to list")
+    return render_template('bookflight.html', title='Passenger flight booking', form=form)
