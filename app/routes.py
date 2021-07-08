@@ -1,5 +1,4 @@
 from datetime import datetime, timedelta
-from urllib import request
 from flask import render_template, flash, redirect, url_for, session
 from app import flask_app
 from app.login_form import LoginForm

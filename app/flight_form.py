@@ -27,8 +27,6 @@ class CreateFlightForm(FlaskForm):
     aircraft_id = SelectField('Aircraft ID', choices=airc, validators=[DataRequired()])
     destination = SelectField('Destination', choices=dests, validators=[DataRequired()])
     departure_time = StringField('Departure Time', validators=[DataRequired()])
-    #arrival_time = StringField('Arrival Time', validators=[DataRequired()])
-    #terminal_id =
     price = StringField('Price', validators=[DataRequired()])
     submit = SubmitField('Submit')
 

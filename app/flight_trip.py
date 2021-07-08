@@ -40,5 +40,5 @@ class FlightTrip:
         self.flight_trip_db_cursor.execute("SELECT * FROM flight_trip WHERE flight_id = (?)", (flight_id,))
         return self.flight_trip_db_cursor.fetchall()
 
-d = FlightTrip()
-d.database_initialise()
+# d = FlightTrip()
+# d.database_initialise()
