@@ -9,7 +9,7 @@
             {{ form.flight_id.label }}<br>
             {{ form.flight_id }}
         </p>
-        <p>{{ form.submit() }}</p>
+        <p>{{ form.submit(class_="button") }}</p>
         {% if data %}
             <td>The current Aircraft assigned is: {{ data }}</td>
             <br>
@@ -19,7 +19,7 @@
             {{ form.aircraft_id.label }}<br>
             {{ form.aircraft_id }}
         </p>
-        <p>{{ form.submit2() }}</p>
+        <p>{{ form.submit2(class_="button") }}</p>
     </form>
         {% for msg in get_flashed_messages() %}
           <h2>{{ msg }}</h2>

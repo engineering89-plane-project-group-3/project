@@ -1,16 +1,16 @@
 {% extends "base.html" %} <!-- header -->
 
 {% block content %}
-    <div class="content">
+    <div class="content login">
     <h2>Passengers Report</h2>
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <p>
             {{ form.flight_id.label }}<br>
-            {{ form.flight_id(size=32) }}
+            {{ form.flight_id(size=32, class_="input") }}
         </p>
         <br>
-        <p>{{ form.submit() }}</p>
+        <p>{{ form.submit(class_="button") }}</p>
     </form>
     <table>
       <thead>

@@ -7,30 +7,30 @@
         {{ form.hidden_tag() }}
         <p>
             {{ form.flight_id.label }}<br>
-            {{ form.flight_id(size=32) }}
+            {{ form.flight_id(size=32, class_="input") }}
         </p>
         <br>
         <p>
             {{ form.aircraft_id.label }}<br>
-            {{ form.aircraft_id }}
+            {{ form.aircraft_id(class_="input") }}
         </p>
         <br>
         <p>
             {{ form.destination.label }}<br>
-            {{ form.destination }}
+            {{ form.destination(class_="input") }}
         </p>
         <br>
         <p>
             {{ form.departure_time.label }}<br>
-            {{ form.departure_time(size=32) }}
+            {{ form.departure_time(size=32,class_="input") }}
         </p>
         <br>
         <p>
             {{ form.price.label }}<br>
-            {{ form.price(size=32) }}
+            {{ form.price(size=32,class_="input") }}
         </p>
         <br>
-        <p>{{ form.submit() }}</p>
+        <p>{{ form.submit(class_="button") }}</p>
     </form>
         {% for msg in get_flashed_messages() %}
           <h2>{{ msg }}</h2>

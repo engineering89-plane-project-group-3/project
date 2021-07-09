@@ -1,9 +1,10 @@
+from passlib.handlers.sha2_crypt import sha256_crypt
 from passlib.hash import pbkdf2_sha256
 import sqlite3
 
 
 def encrypt(password):
-    password = pbkdf2_sha256.hash(password)
+    password = sha256_crypt.hash(password)
     return password
 
 

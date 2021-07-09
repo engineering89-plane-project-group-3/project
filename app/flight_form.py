@@ -1,8 +1,8 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField
 from wtforms.validators import DataRequired
-from app.destinations import DestinationsDatabase
-from app.aircraft import AircraftDatabase
+from app.destinations_database import DestinationsDatabase
+from app.aircraft_database import AircraftDatabase
 from app.flight_trip import FlightTrip
 
 def tuple_maker(list):

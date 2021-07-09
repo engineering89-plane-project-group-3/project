@@ -2,36 +2,36 @@
   
  {% block content %} 
  <div class="content"> 
-     <h2>Passengers</h2> 
+     <h2>Add a Passenger</h2>
      <form action="" method="post" novalidate> 
          {{ form.hidden_tag() }} 
          <p> 
              {{ form.flight_id.label }}<br> 
-             {{ form.flight_id(size=32) }} 
+             {{ form.flight_id(size=32, class_="input") }}
          </p>
          <br>
          <p> 
              {{ form.passport_id.label }}<br> 
-             {{ form.passport_id(size=32) }} 
+             {{ form.passport_id(size=32, class_="input") }}
          </p>
          <br>
          <p> 
              {{ form.first_name.label }}<br> 
-             {{ form.first_name(size=32) }} 
+             {{ form.first_name(size=32, class_="input") }}
          </p>
          <br>
          <p> 
              {{ form.last_name.label }}<br> 
-             {{ form.last_name(size=32) }} 
+             {{ form.last_name(size=32, class_="input") }}
          </p>
          <br>
          <p> 
              {{ form.dob.label }}<br> 
-             {{ form.dob(size=32) }} 
+             {{ form.dob(size=32, class_="input") }}
          </p>
          <br>
          <p> 
-             {{ form.submit() }} 
+             {{ form.submit(class_="button") }}
          </p> 
      </form> 
  </div> 

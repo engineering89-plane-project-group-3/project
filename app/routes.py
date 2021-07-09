@@ -1,6 +1,4 @@
 from datetime import datetime, timedelta
-
-import flask.app
 from flask import render_template, flash, redirect, url_for, session
 from app import flask_app
 from app.login_form import LoginForm, RegisterForm
@@ -8,8 +6,8 @@ from app.login_database import LoginDatabase
 from app.passenger_database import PassengerDatabase
 from app.report_form import ReportForm
 from app.flight_form import CreateFlightForm, ModifyFlightForm, BookFlightForm
-from app.destinations import DestinationsDatabase
-from app.aircraft import AircraftDatabase
+from app.destinations_database import DestinationsDatabase
+from app.aircraft_database import AircraftDatabase
 from app.flight_trip import FlightTrip
 
 

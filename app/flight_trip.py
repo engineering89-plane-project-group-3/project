@@ -2,6 +2,7 @@ import sqlite3
 
 
 class FlightTrip:
+
     flight_trip_db = sqlite3.connect('app/databases/flight_trip.db', check_same_thread=False)
     flight_trip_db_cursor = flight_trip_db.cursor()
 

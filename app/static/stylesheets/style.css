@@ -116,7 +116,7 @@ nav li a span {
     width: calc(100% - 90px);
     padding: 30px 35px;
 }
-#login input[type=text], input[type=password]{
+#login input[type=text], input[type=password], .input{
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
