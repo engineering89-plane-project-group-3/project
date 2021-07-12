@@ -1,37 +1,39 @@
 {% extends "base.html" %} <!-- header -->
 
 {% block content %}
-    <div class="content login">
-    <h2>Passengers Report</h2>
-    <form action="" method="post" novalidate>
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.flight_id.label }}<br>
-            {{ form.flight_id(size=32, class_="input") }}
-        </p>
+    <div class="content-flask">
+        <h1>Passengers Report</h1>
+        <p>Check passenger information on selected flights.</p>
         <br>
-        <p>{{ form.submit(class_="button") }}</p>
-    </form>
-    <table>
-      <thead>
-        <tr>
-           {% if data %}
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Passport ID</th>
-           {% endif %}
-        </tr>
-        </thead>
-        <tbody>
-         {% for row in data %}
+        <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.flight_id(size=32, class_="input", placeholder="Enter Flight ID") }}
+            </p>
+            <br>
+            <p>{{ form.submit(class_="button") }}</p>
+        </form>
+        <br>
+        <table class="">
+          <thead>
             <tr>
-                <td>{{row[0]}}</td>
-                <td>{{row[1]}}</td>
-                <td>{{row[2]}}</td>
+               {% if data %}
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Passport ID</th>
+               {% endif %}
             </tr>
-         {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+             {% for row in data %}
+                <tr>
+                    <td>{{row[0]}}</td>
+                    <td>{{row[1]}}</td>
+                    <td>{{row[2]}}</td>
+                </tr>
+             {% endfor %}
+            </tbody>
+        </table>
     </div>
 {% endblock %}
 

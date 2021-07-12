@@ -1,38 +1,33 @@
 {% extends "base.html" %} <!-- header -->
 
 {% block content %}
-    <div class="content">
-    <h2>Create a Flight</h2>
+    <div class="content-flask">
+    <h1>Create a Flight</h1>
+        <br>
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <p>
-            {{ form.flight_id.label }}<br>
-            {{ form.flight_id(size=32, class_="input") }}
+            {{ form.flight_id(size=32, class_="input", placeholder="Enter Flight ID") }}
         </p>
-        <br>
         <p>
-            {{ form.aircraft_id.label }}<br>
-            {{ form.aircraft_id(class_="input") }}
+            {{ form.aircraft_id.label(class_="input-label") }}
+            {{ form.aircraft_id(class_="input input-dropdown") }}
         </p>
-        <br>
         <p>
-            {{ form.destination.label }}<br>
-            {{ form.destination(class_="input") }}
+            {{ form.destination.label(class_="input-label") }}
+            {{ form.destination(class_="input input-dropdown") }}
         </p>
-        <br>
         <p>
-            {{ form.departure_time.label }}<br>
-            {{ form.departure_time(size=32,class_="input") }}
+            {{ form.departure_time(size=32,class_="input", placeholder="Enter Departure Time" ) }}
         </p>
-        <br>
         <p>
-            {{ form.price.label }}<br>
-            {{ form.price(size=32,class_="input") }}
+            {{ form.price(size=32,class_="input", placeholder="Enter Price")}}
         </p>
         <br>
         <p>{{ form.submit(class_="button") }}</p>
     </form>
         {% for msg in get_flashed_messages() %}
+            <br>
           <h2>{{ msg }}</h2>
         {% endfor %}
 

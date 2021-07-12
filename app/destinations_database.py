@@ -2,10 +2,8 @@ import sqlite3
 
 
 class DestinationsDatabase:
-
     destinations_db = sqlite3.connect('app/databases/destinations.db', check_same_thread=False)
     destinations_db_cursor = destinations_db.cursor()
-
 
     def database_initialise(self):
         self.destinations_db.execute("""CREATE TABLE IF NOT EXISTS destinations (

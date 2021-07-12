@@ -1,11 +1,10 @@
 {% extends "base.html" %} <!-- header -->
 
 {% block content %}
-    <div id="index_overdrive" class="content_zero">
-        <h3>Welcome to</h3>
-        <h2 style="font-size:100px">Bri'ish Airways</h2>
-        <h3>The premier airline offering for the modern age</h3>
-    </div>
+    <h3>Welcome to</h3>
+    <h1 style="font-size:100px">Bri'ish Airways</h1>
+    <h3>The premier airline offering for the modern age</h3>
+
     <div class="content">
     {% if session['username'] %}
         Hi {{ session['username'] }}!
@@ -13,7 +12,7 @@
 
     <body>
       {% for msg in get_flashed_messages() %}
-      <h1 style="color: #FF0000">{{ msg }}</h1>
+      <h1 style="color: #fff">{{ msg }}</h1>
       {% endfor %}
     <p>This is the digital booking system. Please use your mouse or touch screen device to select an option in the menu above</p>
     </body>

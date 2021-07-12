@@ -2,30 +2,29 @@
 
 {% block content %}
 
-    <div id="login" class="content">
-    <h2>Register</h2>
+    <div class="content-flask">
+    <h1>Register</h1>
+        <br>
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <p>
-            {{ form.staff_id.label }}<br>
-            {{ form.staff_id(size=32) }}
+            {{ form.staff_id(size=32,class_="input", placeholder="Staff ID") }}
         </p>
         <p>
-            {{ form.username.label }}<br>
-            {{ form.username(size=32) }}
+            {{ form.username(size=32,class_="input", placeholder="Username") }}
         </p>
         <p>
-            {{ form.password.label }}<br>
-            {{ form.password(size=32) }}
-        </p><p>
-            {{ form.role.label }}<br>
-            {{ form.role(size=32) }}
+            {{ form.password(size=32,class_="input", placeholder="Password") }}
         </p>
+        <p>
+            {{ form.role(size=32,class_="input", placeholder="Role") }}
+        </p>
+        <br>
         <p>{{ form.submit(class_="button") }}</p>
     </form>
     <body>
       {% for msg in get_flashed_messages() %}
-      <h1 style="color: #FF0000">{{ msg }}</h1>
+      <h2>{{ msg }}</h2>
       {% endfor %}
     </body>
     </div>

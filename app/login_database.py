@@ -34,9 +34,7 @@ class LoginDatabase:
             self.users_db_cursor.execute("SELECT password FROM users WHERE username = ?", (username,))
             password_hash = ' '.join(self.users_db_cursor.fetchone()) # Removes the hash from a tuple as sql exports info as a tuple
             password = pbkdf2_sha256.verify(password, password_hash)
-            if password:
-                return True
-            return False
-        except self.Exception as e:
-            self.print(e)
+            return True if password else False
+        except Exception as e:
+            print(e)
             return False

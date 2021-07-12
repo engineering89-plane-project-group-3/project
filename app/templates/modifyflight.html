@@ -1,24 +1,29 @@
 {% extends "base.html" %} <!-- header -->
 
 {% block content %}
-    <div class="content">
-    <h2>Modify a Flight</h2>
+    <div class="content-flask">
+    <h1>Modify a Flight</h1>
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <p>
-            {{ form.flight_id.label }}<br>
-            {{ form.flight_id }}
+            {{ form.flight_id.label(class_="input-label") }}
+        <br>
+            {{ form.flight_id(class_="input input-dropdown") }}
         </p>
+        <br>
         <p>{{ form.submit(class_="button") }}</p>
+        <br>
         {% if data %}
             <td>The current Aircraft assigned is: {{ data }}</td>
             <br>
         {% endif %}
         <br>
         <p>
-            {{ form.aircraft_id.label }}<br>
-            {{ form.aircraft_id }}
+            {{ form.aircraft_id.label(class_="input-label") }}
+        <br>
+            {{ form.aircraft_id(class_="input input-dropdown") }}
         </p>
+        <br>
         <p>{{ form.submit2(class_="button") }}</p>
     </form>
         {% for msg in get_flashed_messages() %}

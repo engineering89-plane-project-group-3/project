@@ -1,39 +1,153 @@
-<html> <!-- Every page uses this for the menu header -->
-    <head>
+<!DOCTYPE html>
+<html>
+    <head>    
+        <!--title-->
         {% if title %}
         <title>{{ title }} - Bri'ish Airlines</title>
         {% else %}
         <title>Welcome to Bri'ish Airlines!</title>
         {% endif %}
+        <!--meta tags-->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        
+        <meta name="theme-color" content="#"/>
+        <meta name="description" content="#">
+        <meta name="keywords" content="#, #, #">
+        <meta name="author" content="Ahhhh-man, monotiller, Salem, Ray, Brittany">
+
+        <link rel="shortcut icon" href="#"/>
+        
+        <!--CSS Link(s)-->
         <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
+
+        <!--JQuery/JS Link(s)-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+        
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+        <!--fonts.gooogle.com-->
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet"> <!-- font-family: 'Ubuntu', sans-serif;-->
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,500,700" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,900&display=swap" rel="stylesheet">
+        
     </head>
+    
     <body>
-    <video autoplay muted loop id="myVideo">
-      <source src="https://cdn.discordapp.com/attachments/855419630424555530/862329419938529311/Time_Lapse_Video_Of_Clouds_And_Sun.mp4" type="video/mp4">
-      Your browser does not support HTML5 video.
-    </video>
-        <nav>
-        <div id="menu">
-            <ul>
-                <li><a href="/"><span id="title">Bri'ish Airways</span></a></li>
-                <li><a href="/report"><span class="material-icons">group</span>Report</a></li>
-                <li><a href="/bookflight"><span class="material-icons">flight_takeoff</span>Book</a></li>
-                {% if not session['username'] %}
-                <li><a href="/login"><span class="material-icons">login</span>Login</a></li>
-                {% endif %}
-                {% if session['username'] %}
-                <li><a href="/createflight"><span class="material-icons">settings</span>Flight Management</a></li>
-                <li><a href="/logout">Logout</a></li>
-                {% endif %}
-            </ul>
-        </div>
+        <video autoplay muted loop id="video">
+            <source src="/static/img/background-vid.mp4" type="video/mp4">
+        </video>
+
+
+        <nav id="m-nav">
+            <div class="m-nav-sub m-nav-t">
+                <div class="m-nav-t_wrap">
+                    <!--<div class="m-nav-title">BRI'ISH AIRWAYS</div> -->
+                    <div class="m-nav-title">
+                        <img src="/static/img/logo.svg" height="70px" style="margin-top: 2px">
+                    </div>
+                </div>
+            </div> 
+            
+            <div class="m-nav-sub m-nav-b" id="m-nav-b">
+                <div class="m-nav-b_wrap">
+                    
+                    <ul class="target">
+                        
+                        <div id="m-nav-sub-title" class="target">
+                            <div class="div">
+                                <a href="/" id="sTitleA">BRI'ISH AIRWAYS</a>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="menu" id="menu"><i class="material-icons miii">menu</i>Menu</div>
+                        
+                        <div class="qwerty">
+                            <li class="target"><a href="/"><span class="material-icons m_icon">home</span>Home</a></li>
+                            <li class="target"><a href="/report"><span class="material-icons m_icon">group</span>Report</a></li>
+                            <li class="target"><a href="/bookflight"><span class="material-icons m_icon">flight_takeoff</span>Book</a></li>
+                            {% if session['username'] %}
+                            <li class="target"><a href="/createflight"><span class="material-icons m_icon">travel_explore</span>Flight Management</a></li>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="qwerty right">
+                            {% if not session['username'] %}
+                            <li class="target"><a href="/login"><span class="material-icons m_icon">login</span>Login</a></li>
+                            {% endif %}
+                            {% if session['username'] %}
+                            <li class="target"><a href="/logout"><span class="material-icons m_icon">logout</span>Logout</a></li>
+                            {% endif %}
+                            {% if session['admin'] %}
+                            <li class="target"><a href="/register"><span class="material-icons m_icon">person_add</span>Register</a></li>
+                            {% endif %}
+                        </div>
+                        
+                        <script>$( "#menu" ).click(function() {$(".qwerty").toggleClass("open");});</script>
+                    </ul>
+                </div>
+            </div>         
         </nav>
-        <div id="nav-div"></div>
-        {% block content %}{% endblock %}
+        
+        
+        <div class="content">
+            <div class="content-wrapper">
+                {% block content %}
+
+                {% endblock %}
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-wrapper">
+                Bri'ish Airways 2021 &nbsp; | &nbsp; Plane Project &nbsp; | &nbsp; Made with <span class="material-icons" style="transform: translate(0, 6px);">favorite_border</span> by Group 3
+            </div>
+        </div>
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+			window.onscroll = changePos;
+
+            function changePos() {
+                var header = document.getElementById("m-nav-b");
+                var sTitle = document.getElementById("m-nav-sub-title");
+                var sTitleA = document.getElementById("sTitleA");
+                var menu = document.getElementById("menu");
+
+                if (window.pageYOffset > 80) {
+                    header.style.position = "fixed";
+                    header.style.top = "0";
+                    header.style.fontSize = "13px";
+                    header.style.background = "#000";
+                    menu.style.fontSize = "15px";
+                    
+                    sTitle.style.width = "220px";
+                    sTitle.style.paddingRight = "8px";
+                    sTitleA.style.color = "#fff";
+                    sTitle.style.marginLeft = "10px";
+                    
+                } else {
+                    header.style.position = "";
+                    header.style.top = "";
+                    header.style.fontSize = "";
+                    header.style.background = "";
+                    
+                    sTitle.style.width = "";
+                    sTitle.style.paddingRight = "0px";
+                    sTitle.style.marginLeft = "0px";
+                    sTitleA.style.color = "";
+                }
+            }
+</script>
 
     </body>
 </html>

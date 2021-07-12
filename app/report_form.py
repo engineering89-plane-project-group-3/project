@@ -4,5 +4,5 @@ from wtforms.validators import DataRequired
 
 
 class ReportForm(FlaskForm):
-    flight_id = StringField('Enter Flight ID', validators=[DataRequired()])
-    submit = SubmitField('Submit')
+    flight_id = StringField(validators=[DataRequired()])
+    submit = SubmitField()

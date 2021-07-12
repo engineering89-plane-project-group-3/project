@@ -16,9 +16,9 @@ from app.flight_trip import FlightTrip
 def index():
     return render_template('index.html', title='Home')
 
+
 @flask_app.route('/login/', methods=['GET', 'POST'])
 def login():
-
     try:
         if 'username' in session:
             return redirect(url_for('index'))
@@ -38,10 +38,12 @@ def login():
             flash('Invalid username or password')
             return redirect(url_for('login'))
         session['username'] = form.username.data
-        session['role'] = user[3]
+        if user[3] == 'admin':
+            session['admin'] = True
         flash('Logged in successfully')
         return redirect(url_for('index'))
     return render_template('login.html', title='Sign In', form=form)
+
 
 @flask_app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -52,10 +54,13 @@ def register():
         flash("User registration complete!")
     return render_template('register.html', title='Register a new user', form=form)
 
+
 @flask_app.route('/logout')
 def logout():
+    session.pop('admin', None)
     session.pop('username', None)
     return redirect(url_for('index'))
+
 
 @flask_app.route('/report', methods=['GET', 'POST'])
 def report():
@@ -67,14 +72,16 @@ def report():
         return render_template('report.html', title='Report', form=form, data=data)
     return render_template('report.html', title='Report', form=form)
 
-#Create Flight
+
+# Create Flight
 @flask_app.route('/createflight', methods=['GET', 'POST'])
 def flight_management():
     form = CreateFlightForm()
     if form.validate_on_submit():
         dest_db = DestinationsDatabase()
         airc_db = AircraftDatabase()
-        dest_db.destinations_db_cursor.execute('SELECT time FROM destinations WHERE destination = "{}"'.format(form.destination.data))
+        dest_db.destinations_db_cursor.execute(
+            'SELECT time FROM destinations WHERE destination = "{}"'.format(form.destination.data))
         time = dest_db.destinations_db_cursor.fetchone()
         vals = form.departure_time.data.split(':')
         arrival_time = datetime.strptime(time[0], "%H:%M") + timedelta(hours=int(vals[0]), minutes=int(vals[1]))
@@ -83,33 +90,40 @@ def flight_management():
         departure_time = "{:d}:{:02d}".format(departure_time.hour, departure_time.minute)
 
         ft = FlightTrip()
-        ft.create_flight_trip(form.flight_id.data, form.aircraft_id.data, airc_db.get_capacity(form.aircraft_id.data), form.destination.data, departure_time, arrival_time)
+        ft.create_flight_trip(form.flight_id.data, form.aircraft_id.data, airc_db.get_capacity(form.aircraft_id.data),
+                              form.destination.data, departure_time, arrival_time)
         flash("Flight has been created")
     return render_template('createflight.html', title='Create Flight', form=form)
+
 
 # Modify Flight
 @flask_app.route('/modifyflight', methods=['GET', 'POST'])
 def modify_flight():
-
     form = ModifyFlightForm()
     if form.validate_on_submit():
         if form.submit.data:
             db = FlightTrip()
-            db.flight_trip_db_cursor.execute('SELECT aircraft_id FROM flight_trip WHERE flight_id = "{}"'.format(form.flight_id.data))
-            return render_template('modifyflight.html', title='Flight Management', form=form, data=db.flight_trip_db_cursor.fetchone()[0])
+            db.flight_trip_db_cursor.execute(
+                'SELECT aircraft_id FROM flight_trip WHERE flight_id = "{}"'.format(form.flight_id.data))
+            return render_template('modifyflight.html', title='Flight Management', form=form,
+                                   data=db.flight_trip_db_cursor.fetchone()[0])
         elif form.submit2.data:
             db = FlightTrip()
-            db.flight_trip_db_cursor.execute('UPDATE flight_trip SET aircraft_id = ? WHERE flight_id = ?', (form.aircraft_id.data, form.flight_id.data))
+            db.flight_trip_db_cursor.execute('UPDATE flight_trip SET aircraft_id = ? WHERE flight_id = ?',
+                                             (form.aircraft_id.data, form.flight_id.data))
             flash("Plane has been changed for the Flight")
     return render_template('modifyflight.html', title='Modify Flight', form=form)
-#Book Flight
 
-#Book Flight
+
+# Book Flight
+
+# Book Flight
 @flask_app.route('/bookflight', methods=['GET', 'POST'])
 def book_flight():
     form = BookFlightForm()
     if form.validate_on_submit():
         db = PassengerDatabase()
-        db.add_passenger(str(form.flight_id.data), str(form.passport_id.data), str(form.first_name.data), str(form.last_name.data), str(form.dob.data))
+        db.add_passenger(str(form.flight_id.data), str(form.passport_id.data), str(form.first_name.data),
+                         str(form.last_name.data), str(form.dob.data))
         flash("Passenger has been added to list")
     return render_template('bookflight.html', title='Passenger flight booking', form=form)

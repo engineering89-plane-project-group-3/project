@@ -2,7 +2,6 @@ import sqlite3
 
 
 class PassengerDatabase:
-
     conn = sqlite3.connect('app/databases/passengers.db', check_same_thread=False)
     c = conn.cursor()
 
@@ -16,9 +15,3 @@ class PassengerDatabase:
         self.c.execute('INSERT INTO ' + flight_id + ' VALUES (?, ?, ?, ?)',
                        (passport_id, first_name, last_name, dob))
         self.conn.commit()
-
-    def book_flight_trip(self):
-        pass
-
-    def view_booking(self):
-        pass

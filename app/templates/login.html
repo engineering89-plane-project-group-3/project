@@ -1,26 +1,26 @@
 {% extends "base.html" %} <!-- header -->
 
 {% block content %}
-
-    <div id="login" class="content">
-    <h2>Sign In</h2>
+    <div class="content-flask">
+    <h1>Sign In</h1>
+    <p>Login to access additional options.</p>
+    <br>
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <p>
-            {{ form.username.label }}<br>
-            {{ form.username(size=32) }}
+            {{ form.username(size=32, class_="input", placeholder="Username") }}
         </p>
         <p>
-            {{ form.password.label }}<br>
-            {{ form.password(size=32) }}
+            {{ form.password(size=32, class_="input", placeholder="Password") }}
         </p>
+        <br>
         <p>{{ form.submit(class_="button") }}</p>
     </form>
-    <body>
-      {% for msg in get_flashed_messages() %}
-      <h1 style="color: #FF0000">{{ msg }}</h1>
-      {% endfor %}
-    <a href="/register"><button class="button">Register for an account</button></a>
-    </body>
+        <br>
+          {% for msg in get_flashed_messages() %}
+          <h2 style="color: #fff">{{ msg }}</h2>
+          {% endfor %}
+        <br>
+        <p>If you need to register an account, please contact your admin. Admins can only add users.</p>
     </div>
 {% endblock %}

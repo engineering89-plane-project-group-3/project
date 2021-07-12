@@ -2,6 +2,7 @@ import unittest
 from app import flask_app
 from flask import session
 
+
 class BasicTestCase(unittest.TestCase):
     def test_index(self):
         tester = flask_app.test_client(self)
@@ -39,6 +40,7 @@ class BasicTestCase(unittest.TestCase):
     #     with flask_app.test_client() as temp:
     #         rv = temp.get('/')
     #         assert session['foo'] == 42
+
 
 if __name__ == '__main__':
     unittest.main()
